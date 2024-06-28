@@ -33,14 +33,8 @@ def saber_elem_vizinhos(dicio_todos, Qi):
 
   return dicio_
 
-def rodada(dicio_elem, dicio_vizinhos):
-  Qf = [
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,0,0,0,0],
-      [0,0,0,0,0]
-  ]
+def rodada(dicio_elem, dicio_vizinhos, N):
+  Qf = [[0 for x in range(N)] for x in range(N)]
   for coord, elem in zip(dicio_elem.keys(),dicio_elem.values()):
     if elem == 0:
       if sum(dicio_vizinhos[coord]) == 3:
@@ -61,7 +55,7 @@ def main(Qi, n):
     dicio = identificando_linha_coluna_elem(Qi)
     dicio_todos = saber_vizinhos_todos(dicio)
     dicio_vizinhos_todos = saber_elem_vizinhos(dicio_todos, Qi)
-    Qf = rodada(dicio, dicio_vizinhos_todos)
+    Qf = rodada(dicio, dicio_vizinhos_todos, len(Qi))
     Qi = Qf.copy()
   return Qf
 
